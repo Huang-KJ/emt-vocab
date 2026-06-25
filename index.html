@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EMT 英文術語發音表</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">EMT Vocabulary Audio Guide</p>
+        <h1>EMT 英文術語互動發音頁面</h1>
+      </section>
+
+      <section class="controls" aria-label="發音設定">
+        <div class="controls-grid">
+          <label class="setting-control" for="browserVoiceSelect">
+            <span class="control-label">瀏覽器可用聲線</span>
+            <select id="browserVoiceSelect" class="voice-select"></select>
+          </label>
+
+          <label class="setting-control" for="rateRange">
+            <span class="control-label control-label-row">
+              <span>語音速度</span>
+              <span id="rateValue">1</span>
+            </span>
+            <input id="rateRange" class="rate-range" type="range" min="0.5" max="1.5" step="0.05" value="1" />
+          </label>
+        </div>
+        <p class="control-note" id="browserVoiceStatus">
+          正在初始化瀏覽器朗讀聲線...
+        </p>
+      </section>
+
+      <section class="filters-panel" aria-label="字母篩選">
+        <div class="filters-header">
+          <h2>英文原名開頭字母</h2>
+          <div class="filter-actions">
+            <button id="selectAllLettersButton" class="reset-button" type="button">全部選取</button>
+            <button id="clearAllLettersButton" class="reset-button secondary-reset-button" type="button">全部取消</button>
+          </div>
+        </div>
+        <div id="letterFilterGroup" class="letter-filter-group"></div>
+      </section>
+
+      <section class="table-shell">
+        <div class="table-toolbar">
+          <div class="mode-actions">
+            <button id="toggleAbbrModeButton" class="reset-button secondary-reset-button" type="button">隱藏縮寫：關</button>
+            <button id="toggleEnglishModeButton" class="reset-button secondary-reset-button" type="button">隱藏英文：關</button>
+            <button id="toggleStudyModeButton" class="reset-button" type="button">隱藏中文：關</button>
+          </div>
+          <button id="toggleOrderButton" class="reset-button secondary-reset-button" type="button">打亂順序</button>
+        </div>
+        <div class="table-scroll">
+          <table class="term-table">
+            <thead>
+              <tr>
+                <th scope="col">縮寫</th>
+                <th scope="col">英文原名</th>
+                <th scope="col">中文名稱</th>
+              </tr>
+            </thead>
+            <tbody id="termTableBody" aria-live="polite"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <template id="termRowTemplate">
+      <tr>
+        <td class="abbr-cell"><span class="abbr"></span></td>
+        <td class="english-cell">
+          <div class="term-line">
+            <span class="english"></span>
+            <button type="button" class="speak-button browser-speak">朗讀</button>
+          </div>
+        </td>
+        <td class="chinese chinese-cell"></td>
+      </tr>
+    </template>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
